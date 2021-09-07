@@ -47,8 +47,28 @@ describe('Work with de basic elements', () => {
             .clear()
             .type('Erro{selectall}acerto', { delay: 100 })
             .should('have.value', 'acerto')
+    })
 
+    it('Radio Buttons', () => {
+        cy.get('#formSexoFem')
+            .click()
+            .should('be.checked')
 
+        cy.get('#formSexoMasc').should('not.be.checked')
+
+        cy.get('[name=formSexo]').should('have.length', 2)
+    })
+
+    it.only('Checkbox', () => {
+        cy.get('#formComidaPizza')
+            .click()
+            .should('be.checked')
+
+        cy.get('[name=formComidaFavorita]').click({ multiple: true })
+
+        cy.get('#formComidaPizza').should('not.be.checked')
+
+        cy.get('#formComidaVegetariana').should('be.checked')
     })
 
 })
