@@ -38,8 +38,12 @@ describe('Esperas...', () => {
 
         cy.get('#lista li')
             .should('contain', 'Item 2')
+    })
 
-
+    it.only('Click retry', () => {
+        cy.get('#buttonCount')
+            .click()
+            .should('have.value', '111')
     })
 
 })
