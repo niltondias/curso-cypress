@@ -1,3 +1,3 @@
-Curso de Cypress 
-Professor: Francisco Aquino
+## Curso de Cypress 
+
 
