@@ -21,3 +21,31 @@ describe('Work with popup', () => {
     })
 
 })
+
+describe.only('Popups com links...', () => {
+    beforeEach(() => {
+        cy.visit('https://wcaquino.me/cypress/componentes.html')
+
+    })
+
+    it('Check popup url', () => {
+        cy.contains('Popup2')
+            .should('have.prop', 'href')
+            .and('equal', 'https://wcaquino.me/cypress/frame.html')
+    })
+
+    it('Deve acessar o popup diretamente', () => {
+        cy.contains('Popup2').then($a => {
+            const href = $a.prop('href')
+            cy.visit(href)
+            cy.get('#tfield').type('funciona')
+
+        })
+    })
+
+    it('Deve abrir popup na mesma pagina', () => {
+        cy.contains('Popup2')
+            .invoke('removeAttr', 'target')
+            .click()
+    })
+})
