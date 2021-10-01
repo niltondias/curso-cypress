@@ -24,5 +24,24 @@ describe('Dinamic tests', () => {
         })
     })
 
+    it.only('Deve selecionar todos usando each', () => {
+        cy.get('#formNome').type('Nilton')
+        cy.get('#formSobrenome').type('Dias')
+        cy.get('[name=formSexo][value=M]').click()
+        // cy.get('[name=formComidaFavorita][value=Carne]').click()
+        cy.get('[name=formComidaFavorita]').each($el => {
+            if ($el.val() !== 'vegetariano') {
+                cy.wrap($el).click()
+
+            }
+        })
+        cy.get('[name=formEscolaridade]').select('Superior')
+        cy.get('#formEsportes').select('Futebol')
+
+        cy.get('#formCadastrar').click()
+        cy.get('#resultado > :nth-child(1)').should('contain', 'Cadastrado')
+
+    })
+
 
 })
