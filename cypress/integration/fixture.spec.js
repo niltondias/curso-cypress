@@ -16,6 +16,5 @@ describe('Fixures tests', () => {
 
         })
 
-
     })
 })
